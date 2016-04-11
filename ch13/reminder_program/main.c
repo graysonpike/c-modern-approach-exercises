@@ -65,7 +65,7 @@ int main() {
 
 	printf("\nDay   Reminder\n");
 	for(i = 0; i < num_reminders; i++) {
-		printf(" %2d   %s\n", days[i], reminders[i]);
+		printf(" %2d  %s\n", days[i], reminders[i]);
 	}
 	printf("\n");
 
