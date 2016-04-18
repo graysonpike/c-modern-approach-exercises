@@ -3,24 +3,26 @@
 #include <stdio.h>
 #include <string.h>
 
-char *get_input() {
+void get_input(char *input) {
     int i = 0;
-    char c, input[20];
-    while(i < 20 && (c = getchar()) != '\n') {
+    char c;
+    while(i < 19 && (c = getchar()) != '\n') {
         input[i] = c;
         i += 1;
     }
-    return input;
+    input[i] = '\0';
 } 
 
 int main() {
+    
     char smallest[20], largest[20], temp[20];
-    strcpy(temp, get_input());
+    get_input(temp);
     strcpy(smallest, temp);
     strcpy(largest, temp);
+
     int small_len = strlen(temp), large_len = strlen(temp);
-    
-    while(strlen(strcpy(temp, get_input()) > 0)) {
+
+    while(strlen(temp) > 0) {
         if(strlen(temp) < small_len) {
             strcpy(smallest, temp);
             small_len = strlen(temp);
@@ -29,6 +31,7 @@ int main() {
             strcpy(largest, temp);
             large_len = strlen(temp);
         }
+        get_input(temp);
     }
 
     printf("Largest: %s\n", largest);
