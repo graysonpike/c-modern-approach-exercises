@@ -1,0 +1,1 @@
+bool get_word(char *word, int len);
