@@ -102,6 +102,9 @@ int main() {
 			default:
 				break;
 		}
+		if(c != '\n') {
+			printf("Enter a command: ");
+		}
 	}
 
 	return 0;
