@@ -16,9 +16,9 @@ struct node *add_node(int value, struct node *first) {
 	// Working pointers
 	struct node *previous = NULL;
 	struct node *current = first;
-	struct node *next = first->next;
+	//struct node *next = first->next;
 	// Is there only one node in the list?
-	if(next == NULL){
+	if(current->next == NULL){
 		if(current->value > value) {
 			temp->next = current;
 			return temp;
@@ -28,10 +28,9 @@ struct node *add_node(int value, struct node *first) {
 		}
 	}
 	// Otherwise, insert the new node in the list before
-	while(next != NULL && current->value <= value) {
+	while(current->next != NULL && current->value <= value) {
 		previous = current;
-		current = next;
-		next = current->next;
+		current = current->next;
 	}
 	previous->next = temp;
 	temp->next = current;
