@@ -8,19 +8,43 @@ struct node {
 	struct node *next;
 };
 
-struct node *add_node(int value, struct node *first){
+struct node *add_node(int value, struct node *first) {
 	struct node *temp = malloc(sizeof(struct node));
 	temp->value = value;
 	temp->next = first;
 	return temp;
 }
 
-void print_list(struct node *first){
+// Remove a node by its value. If multiple nodes of the same value
+// exist, remove all of them.
+struct node *remove_node(int value, struct node *first) {
 	struct node *current = first;
-	do{
+	struct node *previous = NULL;
+	while(current != NULL) {
+		if(current->value == value && previous == NULL) {
+			first = current->next;
+			current = first;
+		} else {
+			if(current->value == value){
+				previous->next = current->next;
+				free(current);
+				current = previous->next;
+			} else {
+				previous = current;
+				current = current->next;
+				
+			}
+		}
+	}
+	return first;
+}
+
+void print_list(struct node *first) {
+	struct node *current = first;
+	while(current != NULL) {
 		printf("%d\n", current->value);
 		current = current->next;
-	} while (current != NULL);
+	}
 }
 
 int main() {
@@ -35,8 +59,12 @@ int main() {
 	// Begin adding values
 	first = add_node(2, first);
 	first = add_node(3, first);
-	
+	printf("After adding values:\n");
 	print_list(first);
+	remove_node(2, first);
+	printf("After removing 2:\n");
+	print_list(first);
+	
 	
 	return 0;
 	
